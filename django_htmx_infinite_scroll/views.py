@@ -22,8 +22,11 @@ def book_page(request: HttpRequest) -> HttpResponse:
         return HttpResponse(f"error: Page {page_number} not found", status=500)
 
     # Render only the content of the next page as a partial HTML response
-    content = render_to_string("page.html", {
-        "page": page,
-    })
+    content = render_to_string(
+        "page.html",
+        {
+            "page": page,
+        },
+    )
 
     return HttpResponse(content)
