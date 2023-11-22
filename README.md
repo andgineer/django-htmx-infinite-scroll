@@ -1,6 +1,5 @@
-# DjangoHtmxInfiniteScroll
+# Django Htmx Infinite Scroll
 
 Infinite scroll with HTMX in Django.
 
-## Scripts
-    make help
+Read the [article](https://sorokin.engineer/posts/en/django_htmx_infinite_scroll.html).
