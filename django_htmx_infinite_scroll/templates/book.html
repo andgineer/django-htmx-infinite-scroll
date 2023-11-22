@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
     <div id="page-scroll" class="overflow-auto">
-        {% include "page.html" with type="prev" book_page=page.number %}
-        {% include "page.html" with type="next" book_page=page.number|add:1 %}
+        {% include "page.html" %}
     </div>
 {% endblock %}
