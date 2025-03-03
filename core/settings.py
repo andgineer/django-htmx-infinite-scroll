@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from typing import List
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +19,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-(qy1)@^p*1x^l$ayy@(t-5cym8y5a#8e0jrlr2v#sprhv)cei#"
+SECRET_KEY = "django-insecure-(qy1)@^p*1x^l$ayy@(t-5cym8y5a#8e0jrlr2v#sprhv)cei#"  # noqa: S105
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: list[str] = []
 
 
 # Application definition
@@ -78,7 +77,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
 }
 
 

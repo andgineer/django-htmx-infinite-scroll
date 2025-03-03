@@ -1,4 +1,5 @@
-"""Models for the DjangoHtmxInfiniteScroll app.""" ""
+"""Models for the DjangoHtmxInfiniteScroll app."""
+
 from django.db import models
 
 
