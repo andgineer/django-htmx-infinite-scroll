@@ -1,11 +1,3 @@
-# build docs from docstrings and markdown-file in folder docs
-# publish them as github pages
-#
-#note for myself
-#
-# Do not forget to set git branch `gh-pages` as source for github pages.
-# This branch auto-updated by `mkdocs gh-deploy`
-#
 name: static source code checks
 on:
   push:
@@ -13,7 +5,8 @@ on:
       - main
       - master
 jobs:
-  deploy:
+  static-analysis:
+    name: Pre-Commit Static Checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
