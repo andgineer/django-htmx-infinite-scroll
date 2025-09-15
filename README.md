@@ -4,9 +4,11 @@ Implement infinite scrolling without JavaScript using Django and HTMX.
 
 ### Quick Start
 
-    . ./activate.sh  # note the leading dot and space
-    make init-db
-    make run
+```bash
+. ./activate.sh  # note the leading dot and space
+make init-db
+make run
+```
 
 Visit http://localhost:8000
 
@@ -41,4 +43,4 @@ Use `make help` to see all available commands, or use any of these:
 ### Learn More
 
 For a detailed explanation of how this works, check out the full article:
-[Django HTMX Infinite Scroll Tutorial](https://sorokin.engineer/posts/en/django_htmx_infinite_scroll.html).
+[Django HTMX Infinite Scroll Tutorial](https://sorokin.engineer/posts/en/django_htmx_infinite_scroll.html)
