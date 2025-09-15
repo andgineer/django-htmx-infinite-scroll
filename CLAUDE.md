@@ -71,6 +71,13 @@ The project uses comprehensive linting and type checking:
 - `ruff check` - Run linting
 - `mypy` - Run type checking
 - `pre-commit run --all-files` - Run all pre-commit hooks
+- `python manage.py check` - Run Django system checks
+- `python manage.py makemigrations --check --dry-run` - Check for missing migrations
+
+### Makefile Quality Commands
+- `make lint` - Run all pre-commit hooks (linting, formatting, type checking)
+- `make check` - Run Django system checks
+- `make check-migrations` - Check for missing migrations
 
 ## Testing
 
@@ -83,9 +90,22 @@ Tests are organized in the `tests/` directory at project root with comprehensive
 
 ### Running Tests
 - `python manage.py test tests` - Run all tests
-- `python manage.py test tests.test_models` - Run specific test module
+- `python manage.py test tests --verbosity=2` - Run tests with verbose output
+- `python manage.py test tests.test_models` - Run model tests only
+- `python manage.py test tests.test_views` - Run view tests only
+- `python manage.py test tests.test_management_commands` - Run management command tests only
 - `coverage run --source='django_htmx_infinite_scroll' manage.py test tests` - Run with coverage
 - `coverage report --show-missing` - Show coverage report
+
+### Makefile Commands
+All test commands are also available via Make:
+- `make test` - Run all tests
+- `make test-verbose` - Run tests with verbose output
+- `make test-coverage` - Run tests with coverage report
+- `make test-models` - Run model tests only
+- `make test-views` - Run view tests only
+- `make test-commands` - Run management command tests only
+- `make ci` - Run full CI pipeline locally (checks + linting + coverage)
 
 ### CI/CD
 GitHub workflows automatically run on push/PR:
@@ -102,3 +122,9 @@ All workflows use UV for fast dependency management and maintain 100% test cover
 ## Database
 
 Uses SQLite for development (db.sqlite3). The BookPage model is designed for demonstration purposes with simple pagination through page numbers.
+
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
