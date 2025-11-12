@@ -18,32 +18,15 @@ init-db: migrate add-pages
 run:
 	python manage.py runserver
 
-.HELP: test  ## Run all tests
+.HELP: test  ## Run tests with coverage (usage: make test or make test tests.test_models)
 test:
-	python manage.py test tests
-
-.HELP: test-verbose  ## Run all tests with verbose output
-test-verbose:
-	python manage.py test tests --verbosity=2
-
-.HELP: test-coverage  ## Run tests with coverage report
-test-coverage:
-	uv pip install coverage
-	coverage run --source='django_htmx_infinite_scroll' manage.py test tests
+	coverage run --source='django_htmx_infinite_scroll' manage.py test $(or $(ARGS),$(filter-out $@,$(MAKECMDGOALS)),tests)
 	coverage report --show-missing
 	coverage xml
 
-.HELP: test-models  ## Run model tests only
-test-models:
-	python manage.py test tests.test_models
-
-.HELP: test-views  ## Run view tests only
-test-views:
-	python manage.py test tests.test_views
-
-.HELP: test-commands  ## Run management command tests only
-test-commands:
-	python manage.py test tests.test_management_commands
+# Catch-all target to allow passing arguments after test target
+%:
+	@:
 
 .HELP: check  ## Run Django system checks
 check:
@@ -58,7 +41,7 @@ lint:
 	pre-commit run --all-files
 
 .HELP: ci  ## Run full CI pipeline locally
-ci: check check-migrations lint test-coverage
+ci: check check-migrations lint test
 
 .HELP: reqs  ## Upgrade requirements including pre-commit
 reqs:

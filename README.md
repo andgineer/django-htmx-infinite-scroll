@@ -23,12 +23,9 @@ Use `make help` to see all available commands, or use any of these:
 - `make init-db` - Initialize database with sample data
 
 **Testing:**
-- `make test` - Run all tests
-- `make test-verbose` - Run tests with verbose output
-- `make test-coverage` - Run tests with coverage report
-- `make test-models` - Run model tests only
-- `make test-views` - Run view tests only
-- `make test-commands` - Run management command tests only
+- `make test` - Run all tests with coverage
+- `make test tests.test_models` - Run model tests only
+- `make test tests.test_models.TestBookPage` - Run specific test class
 
 **Quality Checks:**
 - `make check` - Run Django system checks

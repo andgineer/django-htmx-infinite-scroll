@@ -6,14 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Activate virtual environment and install dependencies
-. ./activate.sh
+source ./activate.sh
 
 # Initialize database and add sample data
-make init-db
+source ./activate.sh && make init-db
 
 # Run development server
-make run
+source ./activate.sh && make run
 ```
+
+**IMPORTANT**: Always activate the virtual environment before running any commands. Use `source ./activate.sh` before each command.
 
 Visit http://localhost:8000 to view the application.
 
@@ -21,13 +23,13 @@ Visit http://localhost:8000 to view the application.
 
 Use the Makefile for common development tasks:
 
-- `make run` - Start Django development server
-- `make shell` - Open Django shell
-- `make migrate` - Run database migrations (makemigrations + migrate)
-- `make add-pages` - Add 100 sample book pages to database
-- `make init-db` - Initialize database with migrations and sample data
-- `make reqs` - Update requirements and pre-commit hooks
-- `make help` - Show all available commands
+- `source ./activate.sh && make run` - Start Django development server
+- `source ./activate.sh && make shell` - Open Django shell
+- `source ./activate.sh && make migrate` - Run database migrations (makemigrations + migrate)
+- `source ./activate.sh && make add-pages` - Add 100 sample book pages to database
+- `source ./activate.sh && make init-db` - Initialize database with migrations and sample data
+- `source ./activate.sh && make reqs` - Update requirements and pre-commit hooks
+- `source ./activate.sh && make help` - Show all available commands
 
 ## Environment Setup
 
@@ -68,16 +70,16 @@ The project uses comprehensive linting and type checking:
 - **Standard hooks**: YAML validation, whitespace fixes
 
 ### Manual Commands
-- `ruff check` - Run linting
-- `mypy` - Run type checking
-- `pre-commit run --all-files` - Run all pre-commit hooks
-- `python manage.py check` - Run Django system checks
-- `python manage.py makemigrations --check --dry-run` - Check for missing migrations
+- `source ./activate.sh && pre-commit run --all-files` - Run all pre-commit hooks
+- `source ./activate.sh && python manage.py check` - Run Django system checks
+- `source ./activate.sh && python manage.py makemigrations --check --dry-run` - Check for missing migrations
+
+**IMPORTANT**: Always use `pre-commit run --all-files` for code quality checks. Never run ruff or mypy directly.
 
 ### Makefile Quality Commands
-- `make lint` - Run all pre-commit hooks (linting, formatting, type checking)
-- `make check` - Run Django system checks
-- `make check-migrations` - Check for missing migrations
+- `source ./activate.sh && make lint` - Run all pre-commit hooks (linting, formatting, type checking)
+- `source ./activate.sh && make check` - Run Django system checks
+- `source ./activate.sh && make check-migrations` - Check for missing migrations
 
 ## Testing
 
@@ -89,23 +91,23 @@ Tests are organized in the `tests/` directory at project root with comprehensive
 - `tests/test_management_commands.py` - Management command tests
 
 ### Running Tests
-- `python manage.py test tests` - Run all tests
-- `python manage.py test tests --verbosity=2` - Run tests with verbose output
-- `python manage.py test tests.test_models` - Run model tests only
-- `python manage.py test tests.test_views` - Run view tests only
-- `python manage.py test tests.test_management_commands` - Run management command tests only
-- `coverage run --source='django_htmx_infinite_scroll' manage.py test tests` - Run with coverage
-- `coverage report --show-missing` - Show coverage report
+- `source ./activate.sh && python manage.py test tests` - Run all tests
+- `source ./activate.sh && python manage.py test tests --verbosity=2` - Run tests with verbose output
+- `source ./activate.sh && python manage.py test tests.test_models` - Run model tests only
+- `source ./activate.sh && python manage.py test tests.test_views` - Run view tests only
+- `source ./activate.sh && python manage.py test tests.test_management_commands` - Run management command tests only
+- `source ./activate.sh && coverage run --source='django_htmx_infinite_scroll' manage.py test tests` - Run with coverage
+- `source ./activate.sh && coverage report --show-missing` - Show coverage report
 
 ### Makefile Commands
 All test commands are also available via Make:
-- `make test` - Run all tests
-- `make test-verbose` - Run tests with verbose output
-- `make test-coverage` - Run tests with coverage report
-- `make test-models` - Run model tests only
-- `make test-views` - Run view tests only
-- `make test-commands` - Run management command tests only
-- `make ci` - Run full CI pipeline locally (checks + linting + coverage)
+- `source ./activate.sh && make test` - Run all tests
+- `source ./activate.sh && make test-verbose` - Run tests with verbose output
+- `source ./activate.sh && make test-coverage` - Run tests with coverage report
+- `source ./activate.sh && make test-models` - Run model tests only
+- `source ./activate.sh && make test-views` - Run view tests only
+- `source ./activate.sh && make test-commands` - Run management command tests only
+- `source ./activate.sh && make ci` - Run full CI pipeline locally (checks + linting + coverage)
 
 ### CI/CD
 GitHub workflows automatically run on push/PR:
