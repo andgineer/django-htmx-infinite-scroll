@@ -10,7 +10,7 @@ from .models import BookPage
 def book(request: HttpRequest) -> HttpResponse:
     """Fetch paginated book and render only visible pages."""
     page_number = request.GET.get("page-number", 1)
-    page = BookPage.objects.get(number=page_number)
+    page = BookPage.objects.get(number=page_number)  # type: ignore[attr-defined]
     return render(request, "book.html", {"page": page})
 
 
@@ -18,8 +18,8 @@ def book_page(request: HttpRequest) -> HttpResponse:
     """Render the book page."""
     page_number = request.GET.get("page-number", 1)
     try:
-        page = BookPage.objects.get(number=page_number)
-    except BookPage.DoesNotExist:
+        page = BookPage.objects.get(number=page_number)  # type: ignore[attr-defined]
+    except BookPage.DoesNotExist:  # type: ignore[attr-defined]
         return HttpResponse(f"error: Page {page_number} not found", status=500)
 
     # Render only the content of the next page as a partial HTML response

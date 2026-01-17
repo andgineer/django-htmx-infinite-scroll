@@ -14,7 +14,7 @@ repos:
       - id: trailing-whitespace
         exclude_types: [ python ]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.4
+    rev: v0.14.13
     hooks:
       - id: ruff
         exclude: ^tests/
@@ -57,18 +57,14 @@ repos:
         args: [
           --line-length=100
         ]
-  - repo: local
+  - repo: https://github.com/facebook/pyrefly-pre-commit
+    rev: 0.48.2
     hooks:
-      - id: mypy
-        name: mypy
-        entry: mypy
+      - id: pyrefly-check
+        name: pyrefly check
+        language: system
         args: [
-          "--install-types",
-          "--non-interactive",
-          "--ignore-missing-imports",
-          "--namespace-packages",
-          "--explicit-package-bases"
+          "--project-excludes=**/tests/**",
+          "--project-excludes=django_htmx_infinite_scroll/migrations/**",
+          "--python-interpreter-path=.venv/bin/python"
         ]
-        files: \.py$
-        exclude: ^tests/
-        language: python

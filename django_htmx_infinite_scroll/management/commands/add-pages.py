@@ -22,20 +22,23 @@ class Command(BaseCommand):  # type: ignore
     def add_arguments(self, parser: type[argparse.ArgumentParser]) -> None:
         parser.add_argument("pages", nargs="?", type=int, default=NUM_PAGES_TO_ADD)  # type: ignore
 
-    def handle(self, *_args: Any, **_options: Any) -> None:
+    def handle(self, *_args: Any, **_options: Any) -> None:  # type: ignore[attr-defined]
         fake = Faker()
 
         # Get the highest existing page number or default to 0 if no pages exist
         highest_page_number = (
-            BookPage.objects.aggregate(max_page_number=Max("number"))["max_page_number"] or 0
+            BookPage.objects.aggregate(  # type: ignore[attr-defined]
+                max_page_number=Max("number"),
+            )["max_page_number"]
+            or 0
         )
 
         for i in range(NUM_PAGES_TO_ADD):
             sentences = " ".join(fake.sentences(25))  # pylint: disable=invalid-name
-            BookPage.objects.create(
+            BookPage.objects.create(  # type: ignore[attr-defined]
                 number=highest_page_number + i + 1,
                 content=sentences,
-            )  # pylint: disable=no-member
+            )
 
         self.stdout.write(
             f"Added {NUM_PAGES_TO_ADD} pages from {highest_page_number + 1} "

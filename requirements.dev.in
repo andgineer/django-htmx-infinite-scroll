@@ -1,6 +1,7 @@
 -r requirements.txt
 
 # test
+pytest
 faker
 coverage
 
@@ -9,6 +10,5 @@ pip-tools
 
 # lint
 pre-commit
-pylint
-mypy
+pyrefly
 pylint-django
